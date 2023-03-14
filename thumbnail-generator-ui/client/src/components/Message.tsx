@@ -3,7 +3,10 @@ import { Cloudinary } from '@cloudinary/url-gen'
 import { thumbnail } from '@cloudinary/url-gen/actions/resize'
 
 interface Props {
-  urlImages: string
+  urlImages: {
+    urlImage: string
+  }
+  image: any
 }
 
 const cloud = new Cloudinary({
@@ -15,29 +18,20 @@ const cloud = new Cloudinary({
 })
 
 export const Message = ({ urlImages }: Props) => {
-  const image = cloud.image(
-    urlImages.replace(/^https?:\/\/res.cloudinary.com\/\w+\/image\/upload\//, ''),
-  )
-  const image2 = cloud.image(
-    urlImages.replace(/^https?:\/\/res.cloudinary.com\/\w+\/image\/upload\//, ''),
-  )
-  const image3 = cloud.image(
-    urlImages.replace(/^https?:\/\/res.cloudinary.com\/\w+\/image\/upload\//, ''),
-  )
+  const url = urlImages.urlImage
+  const image = cloud.image(url.replace(/^https?:\/\/res.cloudinary.com\/\w+\/image\/upload\//, ''))
+  const image150 = image.resize(thumbnail(150, 150))
+  const image300 = image.resize(thumbnail(300, 300))
 
   return (
     <>
-      {urlImages?.length > 0 ? (
-        <div>
-          <h2>Original</h2>
-          <AdvancedImage cldImg={image} />
-          <h2>150</h2>
-          <AdvancedImage cldImg={image2.resize(thumbnail().width(150).height(150))} />
-          <h2>400</h2>
-          <AdvancedImage cldImg={image3.resize(thumbnail().width(400).height(400))} />
-        </div>
-      ) : (
-        <p>Upload an image to see the result</p>
+      {url && (
+        <>
+          <a href={image.toURL()}>link to image</a>
+          <a href={image150.toURL()}>link to image 150</a>
+          <a href={image300.toURL()}>link to image 300</a>
+          <a href={url} rel="noreferrer" target="_blank" />
+        </>
       )}
     </>
   )
