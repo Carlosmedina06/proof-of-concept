@@ -1,13 +1,14 @@
-import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 
-import { DragAndDrop, Title } from './components'
+import Profile from './views/Profile/Profile'
+import Home from './views/home/Home'
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <div className="container-grid">
-      <Title />
-      <DragAndDrop />
-    </div>
+    <Routes>
+      <Route element={<Home />} path="/" />
+      <Route element={<Profile />} path="/profile" />
+    </Routes>
   )
 }
 

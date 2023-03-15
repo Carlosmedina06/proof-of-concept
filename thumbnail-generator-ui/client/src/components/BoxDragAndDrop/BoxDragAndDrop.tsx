@@ -1,4 +1,4 @@
-interface Props {
+export interface Props {
   onImageUpload: () => void
   dragProps: any
   isDragging: boolean

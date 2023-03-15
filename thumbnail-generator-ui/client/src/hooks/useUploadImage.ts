@@ -26,11 +26,10 @@ export const useUploadImage = (): UploadImageHookReturnType => {
 
     const url = await fileUpload(images[0].file!)
 
-    setLoading(false)
-
     if (url) {
       dispatch(uploadImage(images))
       setUrlImage(url.toString())
+      setLoading(false)
     } else {
       alert('Error, please try again later. ❌')
     }
