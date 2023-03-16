@@ -38,7 +38,7 @@ export const ImageSelected = ({ img, loading, onUpload, onImageRemove, onImageUp
             <p>Uploading image please wait a few seconds 🕑</p>
           </Stack>
         ) : (
-          <Stack direction={'row'} justifyContent="space-between" mt={2} spacing={2}>
+          <Stack alignItems={'center'} direction={'row'} justifyContent="space-between" mt={2}>
             <StyledButton disabled={loading} onClick={onUpload}>
               Upload 📤
             </StyledButton>
