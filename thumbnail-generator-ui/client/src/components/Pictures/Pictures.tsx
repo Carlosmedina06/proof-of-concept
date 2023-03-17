@@ -2,7 +2,6 @@ import { Cloudinary } from '@cloudinary/url-gen'
 import { thumbnail } from '@cloudinary/url-gen/actions/resize'
 import { Container, Divider, List, ListItem, ListItemText, Typography } from '@mui/material'
 import { Stack } from '@mui/system'
-import { redirect } from 'react-router-dom'
 
 import {
   BotonEliminar,
