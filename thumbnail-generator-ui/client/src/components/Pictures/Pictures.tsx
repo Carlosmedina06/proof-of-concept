@@ -2,8 +2,15 @@ import { Cloudinary } from '@cloudinary/url-gen'
 import { thumbnail } from '@cloudinary/url-gen/actions/resize'
 import { Container, Divider, List, ListItem, ListItemText, Typography } from '@mui/material'
 import { Stack } from '@mui/system'
+import { redirect } from 'react-router-dom'
 
-import { ImgPicture, LinkPicture, LinkPictureContainer } from './PictureStyled'
+import {
+  BotonEliminar,
+  ImgPicture,
+  LinkPicture,
+  LinkPictureContainer,
+  TextEliminar,
+} from './PictureStyled'
 
 interface Props {
   urlImages: {
@@ -21,6 +28,9 @@ const cloud = new Cloudinary({
 })
 
 export const Pictures = ({ urlImages }: Props) => {
+  const redirect = () => {
+    window.location.href = '/'
+  }
   const url = urlImages.urlImage
   const image = cloud.image(url.replace(/^https?:\/\/res.cloudinary.com\/\w+\/image\/upload\//, ''))
   const image150 = cloud.image(
@@ -55,8 +65,16 @@ export const Pictures = ({ urlImages }: Props) => {
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
             alignItems: 'center',
+            position: 'relative',
           }}
         >
+          <BotonEliminar
+            onClick={() => {
+              redirect()
+            }}
+          >
+            <TextEliminar>↺</TextEliminar>
+          </BotonEliminar>
           <ImgPicture alt="image-selected" src={url} width={300} />
           <LinkPictureContainer>
             <Typography gutterBottom color={'secondary'} component="div" variant="h6">
